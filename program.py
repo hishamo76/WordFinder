@@ -10,25 +10,52 @@
 """
 # Stage 1
 
+import os
+
 
 def main():
-    print_header()  # TODO: just print a pretty header for your app
-    # get_folder_user() # TODO: ask the user to give you the path to the folder
-    # get_keyword_user() # TODO: ask the user to give you the keyword to find
-    # return_results() # TODO: return line_no, the line of every instance found
+    print_header()
+    # TODO: just print a pretty header for your app
+    path = get_folder_user()
+    # TODO: ask the user to give you the path to the folder
+    key = get_keyword_user()
+    # TODO: ask the user to give you the keyword to find
+    return_results(path, key)
+    # TODO: return line_no, the line of every instance found
 
 
 def print_header():
     print(" ===================================== ")
-    print(" |              PROGRAM              |")
+    print(" |            TEXT FINDER            | ")
     print(" ===================================== ")
+
+
+def get_folder_user():
+    path = input("Please enter the path to your folder: ")
+    return path
+
+
+def get_keyword_user():
+    keyword = input("Please enter the word you want to find: ")
+    return keyword
+
+
+def return_results(path, keyword):
+    line_no = 0
+    for file in os.listdir(path):
+        with open(path + "\\" + file, "r") as openfile:
+            for line in openfile:
+                line_no += 1
+                if keyword in line:
+                    print(line_no)
 
 
 if __name__ == '__main__':
     main()
 
 # Stage 2
-# once you finish the first stage, then we can move to add argparse so it can run as one command line
+# once you finish the first stage, then we can move to add argparse
+# so it can run as one command line
 
 # Stage 3
 # add logging capability to the app
