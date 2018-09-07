@@ -3,8 +3,9 @@
     2- Initiliaze a git repo
     3- create a readme file explaining what the app is about.
     4- create a file called program.py which has the code below
-    5- add and commit to git 
-    6- start implementing the functions after each function is completed commit your changes
+    5- add and commit to git
+    6- start implementing the functions after each function is completed,
+     commit your changes
     7- have for each stage a different version
 """
 # Stage 1
@@ -18,9 +19,9 @@ def main():
 
 
 def print_header():
-    print(" +++++++++++++++++++++++++++++++++++++ ")
+    print(" ===================================== ")
     print(" |              PROGRAM              |")
-    print(" +++++++++++++++++++++++++++++++++++++ ")
+    print(" ===================================== ")
 
 
 if __name__ == '__main__':
