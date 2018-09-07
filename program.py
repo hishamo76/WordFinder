@@ -11,10 +11,16 @@
 
 
 def main():
-    # print_header() # TODO: just print a pretty header for your app
+    print_header()  # TODO: just print a pretty header for your app
     # get_folder_user() # TODO: ask the user to give you the path to the folder
     # get_keyword_user() # TODO: ask the user to give you the keyword to find
     # return_results() # TODO: return line_no, the line of every instance found
+
+
+def print_header():
+    print(" +++++++++++++++++++++++++++++++++++++ ")
+    print(" |              PROGRAM              |")
+    print(" +++++++++++++++++++++++++++++++++++++ ")
 
 
 if __name__ == '__main__':
