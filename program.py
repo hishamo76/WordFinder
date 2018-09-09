@@ -40,13 +40,15 @@ def get_keyword_user():
 
 
 def return_results(path, keyword):
+    file_no = 0
     for file in os.listdir(path):
+        file_no += 1
         line_no = 0
-        with open(path + "\\" + file, "r") as openfile:
+        with open(path + "/" + file, "r") as openfile:
             for line in openfile:
                 line_no += 1
-                if keyword in line:
-                    print(line_no)
+                if str(keyword).lower() in line.lower():
+                    print("File No: " + str(file_no) + " Line No: " + str(line_no))
 
 
 if __name__ == '__main__':
