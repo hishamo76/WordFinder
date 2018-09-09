@@ -15,7 +15,6 @@ import os
 
 def main():
     print_header()
-    # TODO: just print a pretty header for your app
     path = get_folder_user()
     # TODO: ask the user to give you the path to the folder
     key = get_keyword_user()
@@ -41,8 +40,8 @@ def get_keyword_user():
 
 
 def return_results(path, keyword):
-    line_no = 0
     for file in os.listdir(path):
+        line_no = 0
         with open(path + "\\" + file, "r") as openfile:
             for line in openfile:
                 line_no += 1
