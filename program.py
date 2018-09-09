@@ -11,6 +11,8 @@
 # Stage 1
 
 import os
+import sys
+from builtins import input
 
 
 def main():
@@ -31,12 +33,20 @@ def print_header():
 
 def get_folder_user():
     path = input("Please enter the path to your folder: ")
-    return path
+    if not os.path.isdir(path):
+        print("Please enter a valid path!")
+        sys.exit()
+    else:
+        return path
 
 
 def get_keyword_user():
     keyword = input("Please enter the word you want to find: ")
-    return keyword
+    if not keyword.strip():
+        print("Please enter a word to search!")
+        sys.exit()
+    else:
+        return keyword
 
 
 def return_results(path, keyword):
@@ -48,7 +58,7 @@ def return_results(path, keyword):
             for line in openfile:
                 line_no += 1
                 if str(keyword).lower() in line.lower():
-                    print("File No: " + str(file_no) + " Line No: " + str(line_no))
+                    print("File No: " + str(file_no) + ", Line No: " + str(line_no))
 
 
 if __name__ == '__main__':
