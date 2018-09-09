@@ -18,11 +18,8 @@ from builtins import input
 def main():
     print_header()
     path = get_folder_user()
-    # TODO: ask the user to give you the path to the folder
     key = get_keyword_user()
-    # TODO: ask the user to give you the keyword to find
     return_results(path, key)
-    # TODO: return line_no, the line of every instance found
 
 
 def print_header():
