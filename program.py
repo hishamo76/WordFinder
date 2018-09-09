@@ -41,7 +41,7 @@ def get_folder_user():
 
 
 def get_keyword_user():
-    keyword = input("Please enter the word you want to find: ")
+    keyword = " " + input("Please enter the word you want to find: ") + " "
     if not keyword.strip():
         print("Please enter a word to search!")
         sys.exit()
@@ -50,15 +50,19 @@ def get_keyword_user():
 
 
 def return_results(path, keyword):
+    os.chdir(path)
     file_no = 0
+    word_count = 0
     for file in os.listdir(path):
         file_no += 1
         line_no = 0
-        with open(path + "/" + file, "r") as openfile:
+        with open(file, "r") as openfile:
             for line in openfile:
                 line_no += 1
                 if str(keyword).lower() in line.lower():
+                    word_count += 1
                     print("File No: " + str(file_no) + ", Line No: " + str(line_no))
+    print("Word Count: " + str(word_count))
 
 
 if __name__ == '__main__':
