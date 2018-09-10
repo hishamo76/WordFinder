@@ -12,11 +12,13 @@
 
 import os
 import sys
+import re
 
 try:
     input = raw_input
 except NameError:
     pass
+
 
 def main():
     print_header()
@@ -27,7 +29,7 @@ def main():
 
 def print_header():
     print(" ===================================== ")
-    print(" |            TEXT FINDER            | ")
+    print(" |            WORD FINDER            | ")
     print(" ===================================== ")
 
 
@@ -51,17 +53,14 @@ def get_keyword_user():
 
 def return_results(path, keyword):
     os.chdir(path)
-    # file_no = 0
     word_count = 0
     for file in os.listdir(path):
-        # file_no += 1
-        # line_no = 0
         with open(file, "r") as openfile:
             for num, line in enumerate(openfile):
-                # line_no += 1
-                if line.lower().find(keyword.lower()) != -1:
+                if re.search(r'\b({})\b'
+                             .format(keyword.lower()), line.lower()):
                     word_count += 1
-                    print("File Name: {}, Line No: {}".format(file, num))
+                    print("File Name: {}, Line No: {}".format(file, num+1))
     print("Word Count: " + str(word_count))
 
 
