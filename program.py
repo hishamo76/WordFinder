@@ -12,8 +12,11 @@
 
 import os
 import sys
-from builtins import input
 
+try:
+    input = raw_input
+except NameError:
+    pass
 
 def main():
     print_header()
@@ -29,7 +32,7 @@ def print_header():
 
 
 def get_folder_user():
-    path = input("Please enter the path to your folder: ")
+    path = input("Please enter the path to your folder: ").rstrip()
     if not os.path.isdir(path):
         print("Please enter a valid path!")
         sys.exit()
@@ -38,7 +41,7 @@ def get_folder_user():
 
 
 def get_keyword_user():
-    keyword = " " + input("Please enter the word you want to find: ") + " "
+    keyword = input("Please enter the word you want to find: ").rstrip()
     if not keyword.strip():
         print("Please enter a word to search!")
         sys.exit()
@@ -48,17 +51,17 @@ def get_keyword_user():
 
 def return_results(path, keyword):
     os.chdir(path)
-    file_no = 0
+    # file_no = 0
     word_count = 0
     for file in os.listdir(path):
-        file_no += 1
-        line_no = 0
+        # file_no += 1
+        # line_no = 0
         with open(file, "r") as openfile:
-            for line in openfile:
-                line_no += 1
-                if str(keyword).lower() in line.lower():
+            for num, line in enumerate(openfile):
+                # line_no += 1
+                if line.lower().find(keyword.lower()) != -1:
                     word_count += 1
-                    print("File No: " + str(file_no) + ", Line No: " + str(line_no))
+                    print("File Name: {}, Line No: {}".format(file, num))
     print("Word Count: " + str(word_count))
 
 
