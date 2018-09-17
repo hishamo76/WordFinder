@@ -57,7 +57,7 @@ def get_keyword_user():
 
 # let's do this in two steps
 # first if path is file then search
-# if it is a directory just continue "igonre it"
+# if it is a directory just continue "ignore it"
 # once we get it right then we can think about
 # if it is a directory
 # and since we are returning three item (file, line_no, text)
