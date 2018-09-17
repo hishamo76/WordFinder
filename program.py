@@ -55,6 +55,14 @@ def get_keyword_user():
         return keyword
 
 
+# let's do this in two steps
+# first if path is file then search
+# if it is a directory just continue "igonre it"
+# once we get it right then we can think about
+# if it is a directory
+# and since we are returning three item (file, line_no, text)
+# let's create a data structure so we can manipulate them
+# I will create a class or namedtuple to use
 def return_results(path, keyword):
     resultList = []
     os.chdir(path)
