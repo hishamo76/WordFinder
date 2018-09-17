@@ -68,14 +68,17 @@ def return_results(path, keyword):
     os.chdir(path)
     word_count = 0
     for file in os.listdir(path):
-        if file != "Search_result.txt":
-            with open(file, "r") as openfile:
-                for num, line in enumerate(openfile):
-                    if re.search(r'\b({})\b'
-                                 .format(keyword.lower()), line.lower()):
-                        word_count += 1
-                        resultList.append(myResults(file, num+1))
-                        print("File Name: {}, Line No: {}".format(file, num+1))
+        # print(">>>>> before filtering >>>>> {}".format(file))
+        if not os.path.isdir("{}/{}".format(path, file)):
+            if file != "Search_result.txt":
+                # print(">>>>>> after filtering >>>>>>> {} ".format(file))
+                with open(file, "r") as openfile:
+                    for num, line in enumerate(openfile):
+                        if re.search(r'\b({})\b'
+                                     .format(keyword.lower()), line.lower()):
+                            word_count += 1
+                            resultList.append(myResults(file, num+1))
+                            print("File Name: {}, Line No: {}".format(file, num+1))
     return resultList, word_count
 
 
