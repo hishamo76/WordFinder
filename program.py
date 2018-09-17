@@ -13,18 +13,22 @@
 import os
 import sys
 import re
+from collections import namedtuple
 
 try:
     input = raw_input
 except NameError:
     pass
 
+myResults = namedtuple("myResults", 'file line')
+
 
 def main():
     print_header()
     path = get_folder_user()
     key = get_keyword_user()
-    return_results(path, key)
+    rL, wC = return_results(path, key)
+    writeResults(rL, wC, key)
 
 
 def print_header():
@@ -52,16 +56,30 @@ def get_keyword_user():
 
 
 def return_results(path, keyword):
+    resultList = []
     os.chdir(path)
     word_count = 0
     for file in os.listdir(path):
-        with open(file, "r") as openfile:
-            for num, line in enumerate(openfile):
-                if re.search(r'\b({})\b'
-                             .format(keyword.lower()), line.lower()):
-                    word_count += 1
-                    print("File Name: {}, Line No: {}".format(file, num+1))
-    print("Word Count: " + str(word_count))
+        if file != "Search_result.txt":
+            with open(file, "r") as openfile:
+                for num, line in enumerate(openfile):
+                    if re.search(r'\b({})\b'
+                                 .format(keyword.lower()), line.lower()):
+                        word_count += 1
+                        resultList.append(myResults(file, num+1))
+                        print("File Name: {}, Line No: {}".format(file, num+1))
+    return resultList, word_count
+
+
+def writeResults(resultList, word_count, keyword):
+    with open("Search_result.txt", "a") as results_file:
+        results_file.write("Word: {}, Word Count: {}\n".format(
+            keyword, str(word_count)))
+        results_file.write("-------------------------\n")
+        for item in resultList:
+            results_file.writelines("File: {}, Line: {}\n"
+                                    .format(item.file, item.line))
+        results_file.write("=========================\n")
 
 
 if __name__ == '__main__':
