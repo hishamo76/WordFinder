@@ -78,7 +78,8 @@ def return_results(path, keyword):
                                      .format(keyword.lower()), line.lower()):
                             word_count += 1
                             resultList.append(myResults(file, num+1))
-                            print("File Name: {}, Line No: {}".format(file, num+1))
+                            print("File Name: {}, Line No: {}"
+                                  .format(file, num+1))
     return resultList, word_count
 
 
